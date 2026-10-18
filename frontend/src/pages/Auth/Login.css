@@ -1,0 +1,189 @@
+/* -------------------------
+   DARK MODERN LOGIN UI
+-------------------------- */
+
+:root {
+  --bg: #06242f;
+  --white: #ffffff;
+  --title: #f1f5f9;
+  --accent: #0ea5e9;
+
+  /* screenshot glass gradient colors */
+  --input-grad-left: #6e848c;
+  --input-grad-right: #3d4f56;
+}
+
+/* Full background */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+  background: var(--bg);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* Card wrapper */
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  margin-top: -10px;
+}
+
+/* TITLE */
+.login-card h1 {
+  color: var(--title);
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.login-card h2 {
+  color: var(--white);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.8rem;
+}
+
+/* FORM GROUP */
+.form-groupp {
+  position: relative;
+  width: 100%;
+
+  margin-bottom: 1.4rem;
+}
+
+/* ICON CIRCLE */
+.circle-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  height: 46px;
+  width: 46px;
+  border-radius: 50%;
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  color: #0c3947;
+  font-size: 1.3rem;
+  z-index: 20;
+}
+
+/* INPUT WRAPPER */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+
+
+
+
+/* GLASS INPUT FIELD */
+.input-wrapper input{
+  width: 100%;
+  height: 50px;
+
+  padding-left: 4.2rem;   /* correct distance from icon */
+  padding-right: 1.2rem;  /* keep right spacing */
+  padding-top: 0;         /* remove weird padding */
+  padding-bottom: 0;
+  border: none;
+  border-radius: 999px;
+
+  /* GLASS GRADIENT EFFECT */
+  background: linear-gradient(
+    90deg,
+    var(--input-grad-left),
+    var(--input-grad-right)
+  );
+  opacity: 0.78;
+  backdrop-filter: blur(6px);
+
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 50px;      /* centers the text vertically */
+  transition: 0.25s ease;
+}
+
+/* Placeholder */
+.input-wrapper input::placeholder {
+  color: rgba(255,255,255,0.75);
+}
+
+/* Hover */
+.input-wrapper input:hover {
+  opacity: 1;
+}
+
+/* Focus */
+.input-wrapper input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.2);
+}
+
+/* LOGIN BUTTON */
+.login-button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 999px;
+
+  background: var(--white);
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 4px 20px rgba(255,255,255,0.25);
+}
+
+.login-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(255,255,255,0.45);
+}
+
+/* FOOTER */
+.apply-text {
+  margin-top: 1.2rem;
+  color: #c2cbd3;
+  font-size: 0.95rem;
+}
+
+.apply-text a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.apply-text a:hover {
+  text-decoration: underline;
+}
+
+.help-text {
+  margin-top: 1.8rem;
+  color: #c2cbd3;
+  font-size: 0.9rem;
+}
+
+.help-text a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.help-text a:hover {
+  text-decoration: underline;
+}

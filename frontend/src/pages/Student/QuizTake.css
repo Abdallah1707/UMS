@@ -1,0 +1,145 @@
+.quiz-take-container {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quiz-header {
+  margin-bottom: 24px;
+}
+
+.quiz-header h2 {
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.quiz-header p {
+  color: #666;
+  margin: 0;
+}
+
+.back-button {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 16px;
+  transition: background 0.3s;
+}
+
+.back-button:hover {
+  background: #5a6fd8;
+}
+
+.quiz-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.question-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.question-card h4 {
+  margin: 0 0 16px 0;
+  color: #333;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.option:hover {
+  background: #f8f9fa;
+}
+
+.option input[type="radio"] {
+  margin: 0;
+}
+
+.question-card textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.submit-section {
+  text-align: center;
+  margin-top: 32px;
+}
+
+.submit-quiz-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.submit-quiz-btn:hover:not(:disabled) {
+  background: #218838;
+}
+
+.submit-quiz-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.submission-result {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.submission-result h3 {
+  color: #28a745;
+  margin: 0 0 16px 0;
+}
+
+.grade-display {
+  margin-top: 16px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.grade-display h4 {
+  color: #007bff;
+  margin: 0 0 8px 0;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}

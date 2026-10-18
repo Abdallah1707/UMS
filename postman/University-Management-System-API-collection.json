@@ -1,0 +1,466 @@
+{
+  "info": {
+    "name": "University-Management-System API",
+    "description": "Postman collection to test the Django REST API (register, login (JWT), token refresh, current user, and hello endpoint). Includes negative/edge-case tests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.1.0"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "exec": [
+          "// Collection-level pre-request: if an access token exists and the request does not already have Authorization header, add it",
+          "if (!pm.request.headers.has('Authorization')) {",
+          "    var token = pm.environment.get('accessToken');",
+          "    if (token) {",
+          "        pm.request.headers.add({ key: 'Authorization', value: 'Bearer ' + token });",
+          "    }",
+          "}"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "Hello",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/hello/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "hello",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register (create user)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"testuser@example.com\",\n  \"first_name\": \"Test\",\n  \"last_name\": \"User\",\n  \"password\": \"Testpass123!\",\n  \"password2\": \"Testpass123!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/core/register/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "core",
+            "register",
+            ""
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Save created user id and username to environment",
+              "if (pm.response.code === 201) {",
+              "    var json = pm.response.json();",
+              "    pm.environment.set('userId', json.id);",
+              "    pm.environment.set('username', json.username);",
+              "}",
+              "pm.test('Status is 201 or 400 (validation)', function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([201,400]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Register (password mismatch)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"badpassuser\",\n  \"email\": \"bad@example.com\",\n  \"password\": \"abc\",\n  \"password2\": \"xyz\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/core/register/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "core",
+            "register",
+            ""
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Password mismatch returns 400', function () {",
+              "    pm.expect(pm.response.code).to.eql(400);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Register (duplicate)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"testuser\",\n  \"email\": \"testuser@example.com\",\n  \"password\": \"Testpass123!\",\n  \"password2\": \"Testpass123!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/core/register/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "core",
+            "register",
+            ""
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Duplicate register returns 400', function () {",
+              "    pm.expect(pm.response.code).to.eql(400);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login (get JWT tokens)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"Testpass123!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/core/login/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "core",
+            "login",
+            ""
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Login returns access and refresh tokens', function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json).to.have.property('access');",
+              "    pm.expect(json).to.have.property('refresh');",
+              "});",
+              "// store tokens in environment for subsequent requests",
+              "try {",
+              "    var json = pm.response.json();",
+              "    if (json.access) pm.environment.set('accessToken', json.access);",
+              "    if (json.refresh) pm.environment.set('refreshToken', json.refresh);",
+              "} catch (e) {}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Login (invalid credentials)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"testuser\",\n  \"password\": \"WrongPassword!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/core/login/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "core",
+            "login",
+            ""
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Invalid login returns 401 or 400', function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([400,401]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Refresh Token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"refresh\": \"{{refreshToken}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/core/token/refresh/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "core",
+            "token",
+            "refresh",
+            ""
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Refresh returns a new access token', function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json).to.have.property('access');",
+              "});",
+              "try {",
+              "    var json = pm.response.json();",
+              "    if (json.access) pm.environment.set('accessToken', json.access);",
+              "} catch (e) {}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Refresh (invalid token)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"refresh\": \"invalidtoken\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/core/token/refresh/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "core",
+            "token",
+            "refresh",
+            ""
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Refresh with invalid token returns 401', function () {",
+              "    pm.expect(pm.response.code).to.eql(401);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Current User",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{accessToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/core/user/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "core",
+            "user",
+            ""
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Get current user returns 200 or 401 if unauthenticated', function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200,401]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Current User (no token)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/core/user/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "core",
+            "user",
+            ""
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('No token returns 401', function () {",
+              "    pm.expect(pm.response.code).to.eql(401);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Current User (invalid token)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer invalidtoken"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/core/user/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "core",
+            "user",
+            ""
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Invalid token returns 401', function () {",
+              "    pm.expect(pm.response.code).to.eql(401);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000"
+    }
+  ]
+}

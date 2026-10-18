@@ -1,0 +1,219 @@
+.messaging-container {
+  display: flex;
+  height: 80vh;
+  gap: 20px;
+}
+
+.messaging-sidebar {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.messaging-sidebar button {
+  padding: 12px;
+  border: none;
+  background: #f0f0f0;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.messaging-sidebar button.active {
+  background: #007bff;
+  color: white;
+}
+
+.messaging-content {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message-item {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.message-item:hover {
+  background: #f8f9fa;
+}
+
+.message-item.unread {
+  background: #e7f3ff;
+  font-weight: bold;
+}
+
+.conversation-messages {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.conversation-message {
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.conversation-message.sent {
+  background: #007bff;
+  color: white;
+  margin-left: 20%;
+}
+
+.conversation-message.received {
+  background: #f0f0f0;
+  margin-right: 20%;
+}
+
+.reply-form input, .reply-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.reply-form button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.compose-form, .announcement-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+}
+
+.compose-form select,
+.compose-form input,
+.compose-form textarea,
+.announcement-form select,
+.announcement-form input,
+.announcement-form textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.compose-form button,
+.announcement-form button {
+  padding: 12px 24px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.compose-form button:hover,
+.announcement-form button:hover {
+  background: #218838;
+}
+
+.compose-form button:disabled,
+.announcement-form button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.announcement-view h2,
+.compose-view h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.announcement-form select {
+  background: white;
+}
+
+.delete-btn {
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+
+.delete-btn:hover {
+  background: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.recipient-selection {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  background: #f9f9f9;
+}
+
+.select-all-container {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.select-all-btn {
+  padding: 8px 16px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.select-all-btn:hover {
+  background: #0056b3;
+}
+
+.recipient-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.recipient-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.recipient-item input[type="checkbox"] {
+  margin: 0;
+}

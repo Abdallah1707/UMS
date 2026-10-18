@@ -1,0 +1,250 @@
+.messaging-container {
+  display: flex;
+  height: 80vh;
+  gap: 20px;
+}
+
+.messaging-sidebar {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.messaging-sidebar button {
+  padding: 12px;
+  border: none;
+  background: #f0f0f0;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.messaging-sidebar button.active {
+  background: #007bff;
+  color: white;
+}
+
+.messaging-sidebar button {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #dc3545;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 18px;
+  text-align: center;
+}
+
+.compose-btn {
+  background: #28a745 !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.messaging-content {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.compose-view select, .compose-view input, .compose-view textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.compose-view button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.compose-view button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.reply-form button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.error-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message-item {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.message-item:hover {
+  background: #f8f9fa;
+}
+
+.message-item.unread {
+  background: #e7f3ff;
+  font-weight: bold;
+}
+
+.conversation-messages {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.conversation-message {
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.conversation-message.sent {
+  background: #007bff;
+  color: white;
+  margin-left: 20%;
+}
+
+.conversation-message.received {
+  background: #f0f0f0;
+  margin-right: 20%;
+}
+
+.reply-form input, .reply-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.reply-form button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.reply-arrow {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.reply-arrow:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.inline-reply-form {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.inline-reply-form input,
+.inline-reply-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.reply-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.reply-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reply-buttons button[type="submit"] {
+  background: #28a745;
+  color: white;
+}
+
+.reply-buttons button[type="button"] {
+  background: #6c757d;
+  color: white;
+}
+
+.delete-btn {
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+
+.delete-btn:hover {
+  background: #dc3545;
+  color: white;
+  border-color: #dc3545;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}

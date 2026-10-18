@@ -1,0 +1,231 @@
+.attendance-management-container {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.attendance-management-container h2 {
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.form-section {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.students-section {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.students-section h3 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.students-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.student-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 20px;
+}
+
+.student-row:last-child {
+  border-bottom: none;
+}
+
+.student-info {
+  flex: 1;
+  min-width: 200px;
+}
+
+.student-name {
+  font-weight: bold;
+  color: #333;
+  display: block;
+}
+
+.student-id {
+  color: #666;
+  font-size: 12px;
+}
+
+.attendance-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 2;
+}
+
+.status-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.status-btn {
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  background: #f8f9fa;
+  color: #666;
+}
+
+.status-btn:hover {
+  transform: translateY(-1px);
+}
+
+.status-btn.present {
+  border-color: #4CAF50;
+  color: #4CAF50;
+}
+
+.status-btn.present.active {
+  background: #4CAF50;
+  color: white;
+}
+
+.status-btn.absent {
+  border-color: #f44336;
+  color: #f44336;
+}
+
+.status-btn.absent.active {
+  background: #f44336;
+  color: white;
+}
+
+.status-btn.late {
+  border-color: #ff9800;
+  color: #ff9800;
+}
+
+.status-btn.late.active {
+  background: #ff9800;
+  color: white;
+}
+
+.notes-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  min-width: 150px;
+}
+
+.submit-section {
+  margin-top: 30px;
+  text-align: center;
+  padding-top: 20px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.message {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.message.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+@media (max-width: 768px) {
+  .form-section {
+    flex-direction: column;
+  }
+  
+  .student-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .attendance-controls {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .status-buttons {
+    justify-content: center;
+  }
+  
+  .notes-input {
+    width: 100%;
+  }
+}
